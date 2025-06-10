@@ -1,0 +1,40 @@
+/* Buses.css */
+
+.buses-map-container {
+  height: 600px;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: 3px solid #1976d2; /* नीळसर border */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.leaflet-container {
+  background: #f0f4f8; /* हलका background */
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1976d2;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.leaflet-popup-tip {
+  background: #1976d2;
+}
+
+.leaflet-marker-icon {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+  transform: scale(1.1);
+  z-index: 1000;
+  cursor: pointer;
+}

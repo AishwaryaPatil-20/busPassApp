@@ -1,0 +1,139 @@
+.daily-pass-container {
+  padding: 1rem;
+  max-width: 500px;
+  margin: 1rem auto;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.15);
+}
+
+.title {
+  text-align: center;
+  color: #065f46;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.section {
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.pass-type-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.pass-button {
+  flex: 1;
+  padding: 0.4rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.pass-button.active {
+  background-color: #10b981;
+  color: white;
+  border-color: transparent;
+}
+
+.pass-button:hover {
+  background-color: #d1fae5;
+}
+
+.zone-button {
+  width: 100%;
+  padding: 0.4rem;
+  margin-bottom: 0.4rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.zone-button.active {
+  background-color: #10b981;
+  color: white;
+  border-color: transparent;
+}
+
+.zone-button:hover {
+  background-color: #d1fae5;
+}
+
+.input {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+.note {
+  font-size: 0.75rem;
+  color: #b45309;
+  margin-top: 0.2rem;
+}
+
+.fare {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.fare-label {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.fare-value {
+  font-weight: 700;
+  color: #047857;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #047857;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #065f46;
+}

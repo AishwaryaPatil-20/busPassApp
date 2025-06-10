@@ -1,0 +1,59 @@
+.update-profile-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #fff;
+}
+
+.update-profile-container h2 {
+  text-align: center;
+  color: #1976d2;
+}
+
+.update-profile-container input {
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  outline-color: #1976d2;
+  transition: border-color 0.3s ease;
+}
+
+.update-profile-container input:focus {
+  border-color: #1976d2;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.update-profile-container button {
+  padding: 10px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background-color: #1976d2;
+  transition: background-color 0.3s ease;
+}
+
+.update-profile-container button:hover {
+  background-color: #145a9e;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #999;
+}

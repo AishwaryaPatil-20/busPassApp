@@ -1,0 +1,139 @@
+/* ViewPass.css */
+
+.view-pass-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background: #f9faff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #1e40af; /* deep blue */
+  letter-spacing: 1.2px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border: 2px solid #1e40af;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #2563eb; /* brighter blue on focus */
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+
+.view-button {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  background-color: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+}
+
+.view-button:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 6px 15px rgba(29, 78, 216, 0.6);
+}
+
+.pass-list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.pass-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 6px 18px rgba(30, 64, 175, 0.1);
+  border: 1.5px solid #e0e7ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
+}
+
+.pass-card h3 {
+  color: #1e40af;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.8px;
+}
+
+.pass-card p {
+  margin: 6px 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #4b5563; /* cool gray */
+}
+
+.pass-card p b {
+  color: #1e40af;
+}
+
+.note {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+  font-style: italic;
+}
+.photo-label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: 600;
+  color: #1976d2;
+  cursor: pointer;
+}
+
+#photo-upload {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.photo-preview img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Responsive */
+@media (max-width: 640px) {
+  .view-pass-container {
+    margin: 20px 12px;
+    padding: 20px 15px;
+  }
+  .pass-card {
+    padding: 18px 20px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+}

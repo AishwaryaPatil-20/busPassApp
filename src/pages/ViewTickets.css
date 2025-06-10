@@ -1,0 +1,19 @@
+.container {
+  padding: 20px;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticket-table th,
+.ticket-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.ticket-table th {
+  background-color: #f0f0f0;
+}

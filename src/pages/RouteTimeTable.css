@@ -1,0 +1,87 @@
+/* Main wrapper */
+.timetable-wrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Title */
+.timetable-wrapper h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+/* Search box */
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  transition: border 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* List styling */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual item */
+.timetable-item {
+  background-color: #fff;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border-left: 6px solid #007bff;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.timetable-item:hover {
+  transform: translateY(-3px);
+}
+
+.timetable-item strong {
+  font-size: 1.1rem;
+  color: #007bff;
+}
+
+.timetable-item span {
+  display: block;
+  margin-top: 0.5rem;
+  color: #444;
+}
+
+/* No data message */
+.timetable-wrapper p {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .timetable-wrapper {
+    padding: 1rem;
+  }
+
+  .search-input {
+    font-size: 0.95rem;
+  }
+
+  .timetable-item {
+    padding: 1rem;
+  }
+}
