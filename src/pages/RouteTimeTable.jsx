@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './RouteTimeTable.css';
+import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function RouteTimeTable() {
   const [timetable, setTimetable] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState(""); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTimetable = async () => {
@@ -33,6 +36,13 @@ export default function RouteTimeTable() {
 
   return (
     <div className="timetable-wrapper">
+      <button
+        className="back-button"
+        onClick={() => navigate("/dashboard")}
+        aria-label="Go back"
+      >
+        <IoArrowBack size={20} />
+      </button>
       <h2>Solapur Bus Timetable</h2>
 
    

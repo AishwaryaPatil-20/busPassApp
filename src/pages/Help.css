@@ -1,0 +1,79 @@
+.help-container {
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+  min-height: 100vh;
+  padding: 30px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help-back {
+  align-self: flex-start;
+  background-color: #0a8dcf;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+  margin-bottom: 20px;
+}
+
+.help-back:hover {
+  background-color: #0979b2;
+}
+
+.help-container h2 {
+  font-size: 28px;
+  color: #0a8dcf;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.help-list {
+  background: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  list-style: none;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.help-list li {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+
+.help-list li::before {
+  content: "🛈";
+  font-size: 18px;
+  color: #0a8dcf;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .help-container h2 {
+    font-size: 22px;
+  }
+
+  .help-list {
+    font-size: 15px;
+  }
+
+  .help-back {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}

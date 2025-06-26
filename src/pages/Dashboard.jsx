@@ -18,11 +18,9 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Dashboard.css";
 
-// Default bus icon fix
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
   iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
 });
@@ -98,18 +96,29 @@ export default function Dashboard() {
       <div className="dashboard-header">
         <FaBus className="bus-icon" />
         <div className="dashboard-header-icons">
-          <FaBell />
-          <FaUserCircle
-            onClick={() => navigate("/profile")}
-            style={{ cursor: "pointer" }}
-            title="View Profile"
-          />
+          <FaBell onClick={() => navigate("/notifications")} style={{ cursor: "pointer" }} title="View Notifications" />
+          <FaUserCircle onClick={() => navigate("/profile")} style={{ cursor: "pointer" }} title="View Profile" />
+            <div className="dashboard-logout-btn" onClick={handleLogout}>
+               Logout
+          </div>
         </div>
       </div>
 
-      <div className="dashboard-search">
+      <h2 className="welcome-user">Welcome, {user?.name} ✨</h2>
+
+      <div
+        className="dashboard-search"
+        onClick={() => navigate("/routetimetable")}
+        style={{ cursor: "pointer" }}
+        title="Click to view route timetable"
+      >
         <FaSearch />
-        <input type="text" placeholder="कुठे जायचे आहे?" />
+        <input
+          type="text"
+          placeholder="कुठे जायचे आहे?"
+          readOnly
+          style={{ backgroundColor: "#f9f9f9", cursor: "pointer" }}
+        />
       </div>
 
       <div className="dashboard-tiles">
@@ -132,7 +141,8 @@ export default function Dashboard() {
 
       <div className="dashboard-notice">
         <p>
-          <b>i</b> सोलापुर महानगर परिवहन महामंडळ लि. दिनांक 1 जून पासून तिकीट आणि पासच्या दरात नाममात्र वाढ केली आहे, तरी आपले सहकार्य असेच राहू द्या धन्यवाद!
+          <b>i</b> सोलापुर महानगर परिवहन महामंडळ लि. दिनांक 1 जून पासून तिकीट आणि पासच्या दरात नाममात्र वाढ केली आहे,
+          तरी आपले सहकार्य असेच राहू द्या धन्यवाद!
         </p>
       </div>
 
@@ -171,7 +181,7 @@ export default function Dashboard() {
 
       {/* Real-Time Map */}
       {userLocation && (
-        <div style={{ height: "300px", margin: "1rem", borderRadius: "10px", overflow: "hidden" }}>
+        <div style={{ height: "350px", margin: "1rem", borderRadius: "10px", overflow: "hidden" }}>
           <MapContainer center={userLocation} zoom={14} style={{ height: "100%", width: "100%" }}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
@@ -189,9 +199,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <button onClick={handleLogout} className="dashboard-logout">
-        Logout
-      </button>
+    
 
       <div className="dashboard-bottom-nav">
         <div className="nav-item active">
@@ -202,7 +210,7 @@ export default function Dashboard() {
           <FaRoute />
           <span>Buses</span>
         </div>
-        <div className="nav-item">
+        <div className="nav-item" onClick={() => navigate("/help")}>
           <FaQuestionCircle />
           <span>Help</span>
         </div>

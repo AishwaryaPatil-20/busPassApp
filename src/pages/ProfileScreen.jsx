@@ -42,8 +42,6 @@ const ProfileScreen = () => {
         )}
       </div>
 
-      {/* Rest of your ProfileScreen content */}
-
     </div>
   );
 };

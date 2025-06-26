@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import "./Profile.css";
+import { IoArrowBack } from "react-icons/io5";
 
 const ProfileScreen = () => {
   const navigate = useNavigate();

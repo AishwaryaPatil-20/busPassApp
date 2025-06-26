@@ -1,19 +1,108 @@
-.container {
-  padding: 20px;
+
+.container1 {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px 30px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.container1 h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #333;
+}
+
+.error {
+  color: #e53935;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 20px;
 }
 
 .ticket-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.ticket-table th,
+.ticket-table thead {
+  background: linear-gradient(to right, #1976d2, #42a5f5);
+  color: white;
+}
+
+.ticket-table th, 
 .ticket-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
+  padding: 14px 12px;
   text-align: center;
+  border-bottom: 1px solid #ddd;
 }
 
-.ticket-table th {
-  background-color: #f0f0f0;
+.ticket-table tbody tr:hover {
+  background-color: #f1f7ff;
+  transition: background-color 0.3s ease;
+}
+
+/* Zebra striping */
+.ticket-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+.back-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .container1 {
+    padding: 15px;
+  }
+
+  .ticket-table thead {
+    display: none;
+  }
+
+  .ticket-table, .ticket-table tbody, .ticket-table tr, .ticket-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .ticket-table tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .ticket-table td {
+    text-align: right;
+    padding: 10px 20px;
+    position: relative;
+  }
+
+  .ticket-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #555;
+  }
 }

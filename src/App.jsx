@@ -13,6 +13,8 @@ import ViewPass from './pages/ViewPass';
 import ViewTickets from './pages/ViewTickets';
 import RouteTimeTable from './pages/RouteTimeTable';
 import UpdateProfile from './pages/UpdateProfile';
+import Help from './pages/Help';
+import Notification from './pages/Notification';
 
 function App() {
   return (
@@ -51,7 +53,9 @@ function App() {
            <Route path="/viewpass" element={<ViewPass />} />
             <Route path="/view-tickets" element={<ViewTickets />} />
             <Route path="/routetimetable" element={<RouteTimeTable />} />
-             <Route path="/update-profile" element={<UpdateProfile />} />
+            <Route path="/update-profile" element={<UpdateProfile />} />
+            <Route path="/help" element={<Help/>} />
+            <Route path="/notifications" element={<Notification />} />
         </Routes>
       </Router>
     </>

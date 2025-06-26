@@ -1,0 +1,87 @@
+/* Container */
+.notification-page {
+  min-height: 100vh;
+  padding: 30px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Back button */
+.back-button {
+  align-self: flex-start;
+  background-color: #0a8dcf;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 138, 190, 0.3);
+  transition: background 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #086fa8;
+}
+
+/* Title */
+.notification-title {
+  font-size: 28px;
+  color: #0a8dcf;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* No notifications */
+.no-notification {
+  color: #777;
+  font-style: italic;
+  font-size: 16px;
+}
+
+/* Notification List */
+.notification-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Notification Card */
+.notification-item {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease;
+}
+
+.notification-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Notification Message */
+.notification-item p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+/* Timestamp */
+.timestamp {
+  font-size: 13px;
+  color: #888;
+  margin-top: 10px;
+  display: block;
+  text-align: right;
+}

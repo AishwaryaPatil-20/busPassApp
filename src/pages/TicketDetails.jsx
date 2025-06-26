@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { IoLogoGoogle, IoLogoUsd } from "react-icons/io";
 import { ImSpinner2 } from "react-icons/im";
-import { IoArrowBack } from "react-icons/io5"; // Back arrow icon
+import { IoArrowBack } from "react-icons/io5";
 import "./TicketDetails.css";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom"; // for navigation
+import { useNavigate } from "react-router-dom";
 
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -22,17 +21,16 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 }
 
 export default function TicketDetails() {
-  const navigate = useNavigate(); // navigation hook
-
+  const navigate = useNavigate();
   const [startStop, setStartStop] = useState("");
   const [endStop, setEndStop] = useState("");
   const [fullTickets, setFullTickets] = useState(1);
   const [halfTickets, setHalfTickets] = useState(0);
-  const [paymentModalVisible, setPaymentModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [locationLoading, setLocationLoading] = useState(false);
   const [startLatLon, setStartLatLon] = useState(null);
   const [endLatLon, setEndLatLon] = useState(null);
+  const [email, setEmail] = useState("");
 
   const farePerKm = 5;
 
@@ -77,16 +75,13 @@ export default function TicketDetails() {
 
   const geocodeAddress = async (address) => {
     try {
-      const res = await axios.get(
-        "https://nominatim.openstreetmap.org/search",
-        {
-          params: {
-            q: address,
-            format: "json",
-            limit: 1,
-          },
-        }
-      );
+      const res = await axios.get("https://nominatim.openstreetmap.org/search", {
+        params: {
+          q: address,
+          format: "json",
+          limit: 1,
+        },
+      });
       if (res.data.length > 0) {
         const place = res.data[0];
         return { lat: parseFloat(place.lat), lon: parseFloat(place.lon) };
@@ -113,9 +108,9 @@ export default function TicketDetails() {
     }
   };
 
-  const handlePayment = async (paymentMethod) => {
-    if (!startStop || !endStop) {
-      toast.error("Please fill all required fields.");
+  const handlePayment = async () => {
+    if (!startStop || !endStop || !email) {
+      toast.error("Please fill all required fields including email.");
       return;
     }
     if (!startLatLon) {
@@ -151,14 +146,15 @@ export default function TicketDetails() {
         halfTickets,
         distance,
         totalFare,
-        paymentMethod,
+        paymentMethod: "Online",
+        email
       });
 
-      toast.success(`Ticket booked successfully! Fare: ₹${totalFare.toFixed(2)}`);
-      setPaymentModalVisible(false);
+      toast.success(`Ticket booked! Email sent to ${email}`);
 
       setStartStop("");
       setEndStop("");
+      setEmail("");
       setFullTickets(1);
       setHalfTickets(0);
       setStartLatLon(null);
@@ -173,16 +169,24 @@ export default function TicketDetails() {
 
   return (
     <div className="container">
-      {/* Back Button */}
       <button
         className="back-button"
         onClick={() => navigate("/dashboard")}
-        aria-label="Go back to dashboard"
+        aria-label="Go back"
       >
-        <IoArrowBack size={20} /> 
+        <IoArrowBack size={20} />
       </button>
 
-      <h2>Ticket Details</h2>
+      <h2>Book Ticket</h2>
+
+      <input
+        className="input"
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
 
       <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         <input
@@ -192,15 +196,11 @@ export default function TicketDetails() {
           value={startStop}
           onChange={(e) => setStartStop(e.target.value)}
           style={{ flex: 1 }}
-          aria-busy={locationLoading}
         />
         <button
           className="location-button"
           onClick={useCurrentLocation}
           disabled={locationLoading || loading}
-          title="Use current location as starting stop"
-          aria-busy={locationLoading}
-          aria-live="polite"
         >
           {locationLoading ? (
             <>
@@ -225,96 +225,28 @@ export default function TicketDetails() {
       <div className="ticket-row">
         <span>Full</span>
         <div className="counter">
-          <button
-            onClick={() => setFullTickets(Math.max(fullTickets - 1, 0))}
-            disabled={loading}
-          >
-            -
-          </button>
+          <button onClick={() => setFullTickets(Math.max(fullTickets - 1, 0))} disabled={loading}>-</button>
           <span>{fullTickets}</span>
-          <button
-            onClick={() => setFullTickets(fullTickets + 1)}
-            disabled={loading}
-          >
-            +
-          </button>
+          <button onClick={() => setFullTickets(fullTickets + 1)} disabled={loading}>+</button>
         </div>
       </div>
 
       <div className="ticket-row">
         <span>Half</span>
         <div className="counter">
-          <button
-            onClick={() => setHalfTickets(Math.max(halfTickets - 1, 0))}
-            disabled={loading}
-          >
-            -
-          </button>
+          <button onClick={() => setHalfTickets(Math.max(halfTickets - 1, 0))} disabled={loading}>-</button>
           <span>{halfTickets}</span>
-          <button
-            onClick={() => setHalfTickets(halfTickets + 1)}
-            disabled={loading}
-          >
-            +
-          </button>
+          <button onClick={() => setHalfTickets(halfTickets + 1)} disabled={loading}>+</button>
         </div>
       </div>
 
       <button
         className="pay-button"
-        onClick={() => setPaymentModalVisible(true)}
+        onClick={handlePayment}
         disabled={loading || locationLoading}
       >
-        Pay
+        {loading ? <><ImSpinner2 className="spin" /> Processing...</> : "Pay & Book Ticket"}
       </button>
-
-      {paymentModalVisible && (
-        <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="payment-heading">
-          <div className="modal">
-            <h3 id="payment-heading">Select Payment Mode</h3>
-
-            <button
-              className="payment-option"
-              onClick={() => handlePayment("GPay")}
-              disabled={loading}
-            >
-              {loading ? (
-                <>
-                  <ImSpinner2 className="spin" /> Processing...
-                </>
-              ) : (
-                <>
-                  <IoLogoGoogle size={24} /> GPay
-                </>
-              )}
-            </button>
-
-            <button
-              className="payment-option"
-              onClick={() => handlePayment("PhonePe")}
-              disabled={loading}
-            >
-              {loading ? (
-                <>
-                  <ImSpinner2 className="spin" /> Processing...
-                </>
-              ) : (
-                <>
-                  <IoLogoUsd size={24} /> PhonePe
-                </>
-              )}
-            </button>
-
-            <button
-              className="cancel-button"
-              onClick={() => setPaymentModalVisible(false)}
-              disabled={loading}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
-}
+} 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import './ViewPass.css';
-
+import { IoArrowBack } from "react-icons/io5";
 export default function ViewPass() {
   const [email, setEmail] = useState('');
   const [passes, setPasses] = useState([]);
+  const navigate = useNavigate();
 
   const fetchPasses = async () => {
     try {
@@ -18,7 +20,15 @@ export default function ViewPass() {
 
   return (
     <div className="view-pass-container">
+      <button
+        className="back-button"
+        onClick={() => navigate("/dashboard")}
+        aria-label="Go back"
+      >
+        <IoArrowBack size={20} />
+      </button>
       <h2>🧾 View Your Smart Bus Pass</h2>
+    
       <input
         type="email"
         placeholder="Enter your Gmail"

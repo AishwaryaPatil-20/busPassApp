@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 import "./UpdateProfile.css";
 
 const UpdateProfile = () => {
@@ -10,8 +11,8 @@ const UpdateProfile = () => {
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [aadhaar, setAadhaar] = useState("");
-  const [photo, setPhoto] = useState(null);  // store file object
-  const [photoPreview, setPhotoPreview] = useState(null); // for preview
+  const [photo, setPhoto] = useState(null);
+  const [photoPreview, setPhotoPreview] = useState(null);
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
@@ -21,40 +22,45 @@ const UpdateProfile = () => {
     }
   };
 
-  const handleSubmit = () => {
-    if (
-      !name.trim() ||
-      !email.trim() ||
-      !mobile.trim() ||
-      !aadhaar.trim()
-    ) {
+  const handleSubmit = async () => {
+    if (!name.trim() || !email.trim() || !mobile.trim() || !aadhaar.trim()) {
       toast.error("Please fill all fields.");
       return;
     }
-
-    // Simple mobile number validation (10 digits)
-    if (!/^\d{10}$/.test(mobile)) {
-      toast.error("Please enter a valid 10-digit mobile number.");
+    if (!/^[0-9]{10}$/.test(mobile)) {
+      toast.error("Invalid 10-digit mobile number.");
       return;
     }
-
-    // Simple Aadhaar validation (12 digits)
-    if (!/^\d{12}$/.test(aadhaar)) {
-      toast.error("Please enter a valid 12-digit Aadhaar number.");
+    if (!/^[0-9]{12}$/.test(aadhaar)) {
+      toast.error("Invalid 12-digit Aadhaar number.");
       return;
     }
-
     if (!photo) {
       toast.error("Please upload your ID photo.");
       return;
     }
 
-    toast.success("Profile updated successfully!");
-    // Here you can add API call to save profile info + photo upload
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("mobile", mobile);
+    formData.append("aadhaar", aadhaar);
+    formData.append("photo", photo);
 
-    setTimeout(() => {
-      navigate("/profile");
-    }, 1500);
+    try {
+      await axios.post("http://localhost:5000/api/profile/update", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success("Profile updated successfully!");
+      setTimeout(() => {
+        navigate("/profile");
+      }, 1500);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update profile.");
+    }
   };
 
   return (
@@ -87,27 +93,26 @@ const UpdateProfile = () => {
         onChange={(e) => setAadhaar(e.target.value)}
         maxLength={12}
       />
-      <div>
-        <label htmlFor="photo-upload" className="photo-label">
-          Upload ID Photo (Max size 2MB)
-        </label>
-        <input
-          type="file"
-          id="photo-upload"
-          accept="image/*"
-          onChange={handlePhotoChange}
-        />
-        {photoPreview && (
-          <div className="photo-preview">
-            <img src={photoPreview} alt="ID Preview" />
-          </div>
-        )}
-      </div>
+
+      <label htmlFor="photo-upload" className="photo-label">
+        Upload ID Photo (Max 2MB)
+      </label>
+      <input
+        type="file"
+        id="photo-upload"
+        accept="image/*"
+        onChange={handlePhotoChange}
+      />
+
+      {photoPreview && (
+        <div className="photo-preview">
+          <img src={photoPreview} alt="Preview" />
+        </div>
+      )}
+
       <div className="buttons">
         <button onClick={handleSubmit}>Save</button>
-        <button className="cancel-btn" onClick={() => navigate("/profile")}>
-          Cancel
-        </button>
+        <button className="cancel-btn" onClick={() => navigate("/profile")}>Cancel</button>
       </div>
     </div>
   );
